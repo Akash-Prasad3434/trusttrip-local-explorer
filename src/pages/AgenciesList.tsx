@@ -9,104 +9,60 @@ const AgenciesList = () => {
   const { destinationId } = useParams();
   const navigate = useNavigate();
 
-  // Local agencies based in each destination
-  const agenciesData: { [key: string]: any[] } = {
-    manali: [
-      {
-        id: "1",
-        name: "Manali Local Tours",
-        rating: 4.8,
-        reviews: 245,
-        location: "Mall Road, Manali",
-        phone: "+91 98765 43210",
-        email: "info@manalitours.com",
-        speciality: "Local Area Expert",
-        experience: "15+ years",
-        packages: [
-          { name: "Complete Manali Tour", price: 8999, duration: "3D/2N" },
-          { name: "Solang Valley & Rohtang", price: 12999, duration: "4D/3N" },
-        ],
-        verified: true,
-        description: "Born and raised in Manali, we know every corner of this beautiful valley."
-      },
-      {
-        id: "2", 
-        name: "Himachal Native Travels",
-        rating: 4.6,
-        reviews: 189,
-        location: "Old Manali, Himachal Pradesh",
-        phone: "+91 87654 32109",
-        email: "contact@himachalnative.com",
-        speciality: "Adventure & Culture",
-        experience: "12+ years",
-        packages: [
-          { name: "Local Heritage Walk", price: 5999, duration: "2D/1N" },
-          { name: "Mountain Trekking Package", price: 15999, duration: "5D/4N" },
-        ],
-        verified: true,
-        description: "Local experts offering authentic Himachali experiences and mountain adventures."
-      }
-    ],
-    shimla: [
-      {
-        id: "3",
-        name: "Shimla Hills Travel",
-        rating: 4.7,
-        reviews: 198,
-        location: "The Mall, Shimla",
-        phone: "+91 76543 21098",
-        email: "info@shimlahills.com",
-        speciality: "Colonial Heritage",
-        experience: "20+ years",
-        packages: [
-          { name: "Colonial Shimla Tour", price: 7999, duration: "3D/2N" },
-          { name: "Toy Train & Heritage", price: 9999, duration: "4D/3N" },
-        ],
-        verified: true,
-        description: "Shimla-based agency specializing in colonial architecture and heritage tours."
-      }
-    ],
-    goa: [
-      {
-        id: "4",
-        name: "Goa Coastal Tours",
-        rating: 4.9,
-        reviews: 312,
-        location: "Panaji, Goa",
-        phone: "+91 98321 76543",
-        email: "hello@goacoastal.com",
-        speciality: "Beach & Water Sports",
-        experience: "18+ years",
-        packages: [
-          { name: "Beach Hopping Tour", price: 6999, duration: "3D/2N" },
-          { name: "Water Sports Package", price: 11999, duration: "4D/3N" },
-        ],
-        verified: true,
-        description: "Local Goan agency offering authentic beach experiences and water adventures."
-      }
-    ],
-    pachmarhi: [
-      {
-        id: "5",
-        name: "Satpura Local Guides",
-        rating: 4.5,
-        reviews: 156,
-        location: "Pachmarhi, Madhya Pradesh",
-        phone: "+91 87654 98765",
-        email: "info@satpuraguides.com",
-        speciality: "Forest & Wildlife",
-        experience: "10+ years",
-        packages: [
-          { name: "Forest Trek Package", price: 5999, duration: "2D/1N" },
-          { name: "Complete Pachmarhi", price: 9999, duration: "4D/3N" },
-        ],
-        verified: true,
-        description: "Local experts from Pachmarhi offering forest treks and wildlife experiences."
-      }
-    ]
-  };
-
-  const agencies = agenciesData[destinationId || ""] || [];
+  // Mock agencies data - in real app, this would come from API based on destinationId
+  const agencies = [
+    {
+      id: "1",
+      name: "Mountain Adventures Tours",
+      rating: 4.8,
+      reviews: 245,
+      location: "Mall Road, Manali",
+      phone: "+91 98765 43210",
+      email: "info@mountainadventures.com",
+      speciality: "Adventure Tours",
+      experience: "15+ years",
+      packages: [
+        { name: "Manali Adventure Package", price: 15999, duration: "5D/4N" },
+        { name: "Solang Valley Special", price: 12999, duration: "3D/2N" },
+      ],
+      verified: true,
+      description: "Specializing in adventure tourism and mountain expeditions with experienced local guides."
+    },
+    {
+      id: "2", 
+      name: "Himalayan Heritage Travels",
+      rating: 4.6,
+      reviews: 189,
+      location: "Old Manali, Himachal Pradesh",
+      phone: "+91 87654 32109",
+      email: "contact@himalayanheritage.com",
+      speciality: "Cultural Tours",
+      experience: "12+ years",
+      packages: [
+        { name: "Cultural Manali Experience", price: 14999, duration: "4D/3N" },
+        { name: "Temple & Monastery Tour", price: 11999, duration: "3D/2N" },
+      ],
+      verified: true,
+      description: "Authentic cultural experiences focusing on local traditions and heritage sites."
+    },
+    {
+      id: "3",
+      name: "Valley View Travels",
+      rating: 4.4,
+      reviews: 156,
+      location: "Hadimba Road, Manali",
+      phone: "+91 76543 21098",
+      email: "bookings@valleyview.com",
+      speciality: "Family Tours",
+      experience: "8+ years",
+      packages: [
+        { name: "Family Fun Package", price: 16999, duration: "5D/4N" },
+        { name: "Rohtang Pass Excursion", price: 13999, duration: "4D/3N" },
+      ],
+      verified: false,
+      description: "Family-friendly tours with comfortable accommodations and safe travel arrangements."
+    }
+  ];
 
   const destinationNames: { [key: string]: string } = {
     manali: "Manali",
@@ -137,10 +93,10 @@ const AgenciesList = () => {
           </Button>
           <div>
             <h1 className="text-3xl font-bold text-foreground">
-              Local Travel Agencies in {destinationName}
+              Travel Agencies in {destinationName}
             </h1>
             <p className="text-muted-foreground mt-2">
-              {agencies.length} local agencies from {destinationName} area
+              {agencies.length} verified local agencies found
             </p>
           </div>
         </div>
@@ -212,7 +168,7 @@ const AgenciesList = () => {
               <CardContent className="pt-0">
                 <div className="flex justify-between items-center">
                   <div className="text-sm text-muted-foreground">
-                    Click to view packages from this local agency
+                    Click to view detailed packages and roadmaps
                   </div>
                   <Button variant="outline" size="sm">
                     View Packages
