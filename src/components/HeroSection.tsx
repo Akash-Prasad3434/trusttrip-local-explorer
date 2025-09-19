@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,13 +6,13 @@ import manaliHero from "@/assets/manali-hero.jpg";
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
 
   const popularDestinations = ["Manali", "Shimla", "Goa", "Pachmarhi", "Kerala", "Rajasthan"];
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+      // In a real app, this would navigate to search results
+      console.log("Searching for:", searchQuery);
     }
   };
 
